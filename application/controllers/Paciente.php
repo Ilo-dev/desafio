@@ -37,10 +37,10 @@ class Paciente extends CI_Controller {
 		$dados = elements(array('nome_paciente', 'mae_paciente', 'cpf', 'cns', 'data_nascimento'), $this->input->post());
         $this->paciente_model->inserir_paciente($dados);   
         redirect("paciente");   
-	}
+		}
 
 	public function editar_paciente($id)
-	{
+		{
 		$this->load->model('paciente_model');
 	    $this->load->model('endereco_model');
 		$this->load->helper('array');
@@ -60,5 +60,6 @@ class Paciente extends CI_Controller {
 	    $this->load->view('template/conteudo/menu');
 		$this->load->view('template/conteudo/form_paciente');
 		$this->load->view('template/footer/footer');
+	}
 }
 

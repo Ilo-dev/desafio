@@ -15,7 +15,7 @@
           <tbody>
             <?php foreach ($paciente as $pacientes) : ?>
             <tr>
-              <td><?= $pacientes['id_paciente'] ?></td>
+              <td><?= $pacientes['paciente_id'] ?></td>
               <td><?= $pacientes['nome_paciente'] ?></td>
               <td><?= $pacientes['mae_paciente'] ?></td>
               <td><?= $pacientes['data_nascimento'] ?></td>

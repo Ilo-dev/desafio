@@ -7,17 +7,17 @@ class Paciente_model extends CI_Model
 	
 	public function index()
 	{
-	  return $this->db->get("desafio.paciente")->result_array();
+	  return $this->db->get("paciente")->result_array();
 	}
 
 	public function inserir_paciente($paciente)
 	{
-		$this->db->insert('desafio.paciente', $paciente);
+		$this->db->insert('paciente', $paciente);
 	}
 
 	 public function exibir_paciente($id)
 	{
-		return $this->db->get_where('desafio.paciente', array('id_paciente' => $id
+		return $this->db->get_where('paciente', array('id_paciente' => $id
 
 
 		))->row_array();

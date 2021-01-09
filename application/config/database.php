@@ -78,7 +78,7 @@ $db['default'] = array(
 	'hostname' => 'localhost',
 	'username' => 'postgres',
 	'password' => 'root',
-	'database' => 'postgres',
+	'database' => 'desafio',
 	'dbdriver' => 'postgre',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -93,6 +93,7 @@ $db['default'] = array(
 	'stricton' => FALSE,
 	'failover' => array(),
 	'save_queries' => TRUE,
-	'port' => 5433
+	'port' => 5432,
+	'schemas'=> 'desafio'
 
 );
