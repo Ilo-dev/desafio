@@ -17,7 +17,7 @@ class Paciente_model extends CI_Model
 
 	 public function exibir_paciente($id)
 	{
-		return $this->db->get_where('paciente', array('id_paciente' => $id
+		return $this->db->get_where('paciente', array('paciente_id' => $id
 
 
 		))->row_array();

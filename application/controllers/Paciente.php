@@ -48,6 +48,8 @@ class Paciente extends CI_Controller {
 		$data['paciente'] = $this->paciente_model->exibir_paciente($id);
 	 	$data['endereco'] = $this->endereco_model->exibir_endereco($id);
 		
+		var_dump($data);
+		exit();
 
 	//    $dados = elements(array('cep', 'uf', 'cidade', 'bairro', 'ibge','numero_casa','rua' ), $this->input->post());   
     //    $this->endereco_model->exibir_endereco($dados);
