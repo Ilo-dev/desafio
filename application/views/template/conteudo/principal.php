@@ -9,7 +9,7 @@
               <th>Data de Nascimento</th>
               <th>CPF</th>
               <th>CND</th>
-              <th>xxx</th>
+              <th>ACÕES</th>
             </tr>
           </thead>
           <tbody>
@@ -21,7 +21,14 @@
               <td><?= $pacientes['data_nascimento'] ?></td>
               <td><?= $pacientes['cpf'] ?></td>
               <td><?= $pacientes['cns'] ?></td>
-              <td>acoes</td>
+              <td>
+                <a href="<?=  base_url() ?>paciente/editar_paciente/<?= $pacientes['paciente_id']?>" class="btn btn-primary btn-warning"><i class="fas fa-pencil-alt"></i>
+                EDITAR
+                </a>
+                <a href="<?=  base_url() ?>paciente/delete/<?= $pacientes['paciente_id']?>" class="btn btn-primary btn-danger"><i class="fas fa-pencil-alt"></i>
+                DELETAR
+                </a>
+              </td>
             </tr>
               <?php endforeach; ?>
           </tbody>

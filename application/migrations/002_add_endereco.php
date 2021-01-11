@@ -25,7 +25,7 @@ class Migration_Add_endereco extends CI_Migration {
                                 'type' => 'VARCHAR',
                                 'constraint' => '100',
                         ),
-                          'ciadade' => array(
+                          'cidade' => array(
                                 'type' => 'VARCHAR',
                                 'constraint' => '100',
                         ),

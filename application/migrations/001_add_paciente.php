@@ -34,7 +34,7 @@ class Migration_Add_paciente extends CI_Migration {
                         ),
                        
                 ));
-                $this->dbforge->add_key('id_paciente', TRUE);
+                $this->dbforge->add_key('paciente_id', TRUE);
                 $this->dbforge->create_table('paciente');
         }
 

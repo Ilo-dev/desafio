@@ -1,39 +1,41 @@
+<?php if(!isset($paciente)):?>
 <form class="row g-3" action="<?= base_url() ?>paciente/inserir_paciente" method="post">
-	
-  <div class="col-6">
+  <?php else :?>
+  <form class="row g-3" action="<?= base_url()?>paciente/update" method="post">
+  <?php endif; ?>
+<div class="col-6">
 	 <input type="file" multiple id="addFotoGaleria">
-  	<div class="galeria">
-      
+  	<div class="galeria">      
     </div>
-	</div>
+</div>
 	<div class="col-6">
 	  <label for="formGroupExampleInput" class="form-label">Nome:</label>
-	  <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nome do Paciente" name="nome_paciente">
+	  <input type="text" class="form-control" id="formGroupExampleInput" name="nome_paciente" value="<?= isset($paciente) ? $paciente["nome_paciente"] : "" ?>">
 	</div>
 
 	<div class="col-md-4">
     <label for="inputCity" class="form-label">Data de Nascimento:</label>
-    <input type="text" class="form-control" id="inputCity" name="data_nascimento">
+    <input type="text" class="form-control" id="inputCity" name="data_nascimento"  value="<?= isset($paciente) ? $paciente["data_nascimento"] : "" ?>">
   </div>
   <div class="col-md-4">
     <label for="inputCity" class="form-label">CPF:</label>
-    <input type="text" class="form-control" name="cpf">
+    <input type="text" class="form-control" name="cpf"  value="<?= isset($paciente) ? $paciente["cpf"] : "" ?>">
   </div>
   <div class="col-md-4">
     <label for="inputCity" class="form-label">CNS:</label>
-    <input type="text" class="form-control" name="cns">
+    <input type="text" class="form-control" name="cns"  value="<?= isset($paciente) ? $paciente["cns"] : "" ?>">
   </div>
 	<div class="mb-3">
 	  <label for="formGroupExampleInput2" class="form-label">Mãe:</label>
-	  <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Nome da Mãe do Paciente" name="mae_paciente">
+	  <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Nome da Mãe do Paciente" name="mae_paciente"  value="<?= isset($paciente) ? $paciente["mae_paciente"] : "" ?>">
 	</div>
   <div class="col-md-2">
      <label for="inputZip" class="form-label">CEP</label>
-     <input class="form-control" name="cep" type="text" id="cep" value="" size="10" maxlength="9" onblur="pesquisacep(this.value);">
+     <input class="form-control" name="cep" type="text" id="cep"  value="<?= isset($endereco['cep']) ? $endereco["cep"] : "" ?>" size="10" maxlength="9" onblur="pesquisacep(this.value);">
   </div>
   <div class="col-8">
     <label for="inputAddress" class="form-label">Endereço</label>
-    <input type="text" class="form-control" id="rua" placeholder="Endereço do paciente" name="rua">
+    <input type="text" class="form-control" id="rua" placeholder="Endereço do paciente" name="rua" >
   </div>
   <div class="col-4">
     <label for="inputAddress" class="form-label">N° Casa: </label>
