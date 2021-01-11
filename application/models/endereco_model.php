@@ -18,13 +18,6 @@ class Endereco_model extends CI_Model
 		))->row_array();
 	}
 
-	public function update($id_endereco)
-	{
-
-		$this->db->where('id_endereco', $id_endereco);
-		return $this->db->update('endereco', $id_endereco);
-	}
-
 
 	public function destroy($id_endereco)
 	{

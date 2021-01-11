@@ -7,6 +7,7 @@
     <!-- Bootstrap core CSS -->
 
 <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>">
+<link rel="stylesheet" href="<?= base_url('assets/css/valida.css') ?>">
 
     <!-- Favicons -->
 <link rel="apple-touch-icon" href="/docs/5.0/assets/img/favicons/apple-touch-icon.png" sizes="180x180">

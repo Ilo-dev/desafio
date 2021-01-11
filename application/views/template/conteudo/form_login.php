@@ -1,4 +1,4 @@
-  <form class="form" action="<?= site_url('home/entrar') ?>">
+  <form class="form" action="<?= site_url('login/acesso') ?>">
     <div class="card">
       <div class="card-top">
         <img class="imglogin" src="<?=  base_url('assets/img/person-circle.svg') ?>">

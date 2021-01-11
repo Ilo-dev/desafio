@@ -31,18 +31,6 @@
                Consultar Paciente
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<?= base_url() ?>paciente/editar_paciente">
-              <span data-feather="users"></span>
-              Editar Paciente
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<?= base_url() ?>paciente/delete">
-              <span data-feather="bar-chart-2"></span>
-              Excluir Paciente
-            </a>
-          </li>
         </ul>
       </div>
     </nav>

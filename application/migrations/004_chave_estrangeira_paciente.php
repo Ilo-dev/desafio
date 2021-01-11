@@ -6,18 +6,18 @@ class Migration_chave_estrangeira_paciente extends CI_Migration {
 
         public function up()
         {
-                $columns = [
-         'id_endereco'    =>  [
+          $columns = [
+         'paciente_id'    =>  [
          'type'              =>  'SERIAL'
   ]
 ];
 
-$this->dbforge->add_column ('paciente', $columns);
-$this->dbforge->add_field('FOREIGN KEY(id_endereco) REFERENCES endereco(id_endereco) on delete cascade');
+$this->dbforge->add_column ('endereco', $columns);
+$this->dbforge->add_field('FOREIGN KEY(paciente_id) REFERENCES paciente(paciente_id) on delete cascade');
         }
 
         public function down()
         {
-                $this->dbforge->drop_table('paciente');
+                $this->dbforge->drop_table('endereco');
         }
 }

@@ -23,13 +23,6 @@ class Paciente_model extends CI_Model
 		))->row_array();
 	}
 
-	public function update($paciente_id, $paciente)
-	{
-
-		$this->db->where('paciente_id', $paciente_id);
-		return $this->db->update('paciente', $paciente);
-	}
-
 	public function destroy($paciente_id)
 	{
 		$this->db->where('paciente_id', $paciente_id);

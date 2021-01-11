@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Paciente extends CI_Controller {
 
+
 	public function index()
 	{
 		$this->load->model('paciente_model');
@@ -27,6 +28,8 @@ class Paciente extends CI_Controller {
 
 	public function inserir_paciente()
 	{
+		$this->load->library('form_validation');
+	    $this->form_validation->set_rules('nome_paciente', 'Nome Paciente','required|min_length[5]|max_length[12]');
 		$this->load->model('paciente_model');
 	    $this->load->model('endereco_model');
 		$this->load->helper('array');
@@ -37,10 +40,12 @@ class Paciente extends CI_Controller {
 		$paciente = elements(array('nome_paciente', 'mae_paciente', 'cpf', 'cns', 'data_nascimento'), $this->input->post());
         $this->paciente_model->inserir_paciente($paciente);  
 
-        redirect("paciente");   
+        redirect("paciente"); 
+
+
 		}
 
-	public function editar_paciente($paciente_id = 1)
+	public function editar_paciente($paciente_id)
 		{
 		$this->load->model('paciente_model');
 	    $this->load->model('endereco_model');
@@ -55,18 +60,18 @@ class Paciente extends CI_Controller {
 		$this->load->view('template/footer/footer');
 	}
 
-	public function update($paciente_id = 1)
+	public function update()
 	{
-
-		$this->load->model('paciente_model');	
-		$this->load->model('endereco_model');
+		$id = $this->input->post('paciente_id');
 		$this->load->helper('array');
+		$atualiza =  elements(array('nome_paciente', 'mae_paciente', 'cpf', 'cns', 'data_nascimento'), $this->input->post());
+        $this->db->where('paciente_id', $id);
+        $this->db->update('paciente', $atualiza);
 
-		$endereco = elements(array('cep', 'uf', 'cidade', 'bairro', 'ibge','numero_casa','rua' ), $this->input->post());   
-        $this->endereco_model->update($paciente_id, $endereco);
+        $atualiza_endereco = elements(array('cep', 'uf', 'cidade', 'bairro', 'ibge','numero_casa','rua' ), $this->input->post());   
+        $this->db->where('paciente_id', $id);
+        $this->db->update('endereco', $atualiza_endereco);
 
-		$paciente = elements(array('nome_paciente', 'mae_paciente', 'cpf', 'cns', 'data_nascimento'), $this->input->post());
-        $this->paciente_model->update($paciente_id, $paciente);  
 
 		redirect("paciente");
 	}
@@ -77,7 +82,8 @@ class Paciente extends CI_Controller {
 		$this->load->model("paciente_model");
 		$this->load->model("endereco_model");
 		$this->paciente_model->destroy($paciente_id);
-		$this->paciente_model->destroy($paciente_id);
+		$this->endereco_model->destroy($paciente_id);
+		redirect("paciente");
 	}
 }
 
