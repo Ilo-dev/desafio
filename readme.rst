@@ -17,4 +17,6 @@ Para ver o crud em sua máquina, tenha um servidor web instalado, e o pgadmin ou
 Descompacte o arquivo dentro do seu diretorio raíz, e acesse a url primeiro para executar as 
 migrations em sequencia, 001,002,003,004 e após isso o crud funcionará.
 
+Lembrando que é necessário configurar a por de conexão com o banco de dados;
+
 
