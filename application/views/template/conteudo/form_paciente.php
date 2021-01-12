@@ -9,7 +9,7 @@
   <?php endif; ?>
   <div class="col-6">
   	 <input type="file" multiple id="foto" name="foto">
-    	<div id="foto_upload"> 
+    	<div id="foto"> 
 
       </div>
   </div>

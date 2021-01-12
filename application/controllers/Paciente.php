@@ -3,7 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Paciente extends CI_Controller {
 
-
 	public function index()
 	{
 		$this->load->model('paciente_model');
@@ -41,14 +40,15 @@ class Paciente extends CI_Controller {
 	    redirect("paciente");
 		}
 
-	public function exibir_paciente($paciente_id)
+	public function buscar_paciente($paciente_id)
 		{
-		$this->load->model('paciente_model');
-	    $this->load->model('endereco_model');
-		$this->load->helper('array');
+		$data['paciente'] = $this->db->get('paciente')->result();
+		$busca = $this->input->post('busca');
+		$data2['busca'] = $busca;
 
-		$data['paciente'] = $this->paciente_model->exibir_paciente($paciente_id);
-	 	$data['endereco'] = $this->endereco_model->exibir_endereco($paciente_id);
+		$this->db->like('nome', $busca);
+		$this->db->or_like('cpf',$busca);
+		$data2['pacientes'] = $this->db->get('paciente')->result();
 	 	$data['title'] = "Exibindo - Paciente";
 		$this->load->view('template/conteudo/header_conteudo/header_conteudo');
 	    $this->load->view('template/conteudo/menu');
@@ -96,6 +96,25 @@ class Paciente extends CI_Controller {
 		$this->paciente_model->destroy($paciente_id);
 		$this->endereco_model->destroy($paciente_id);
 		redirect("paciente");
+	}
+
+	public function login(){		
+		$usuario = $this->input->post('usuario');
+		$senha = $this->input->post('senha');
+		$this->db->where('login',$usuario);
+		$this->db->where('senha',$senha);
+		$usuario = $this->db->get('usuario')->result();		
+		if(count($usuario)===1){
+			$dados = array(
+               'login'  => $usuario[0]->usuario,
+               'logado' => TRUE
+            );
+			$this->session->set_userdata($dados);
+			redirect("paciente");
+		}
+		else{
+			redirect(base_url());
+		}
 	}
 }
 
