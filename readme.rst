@@ -17,6 +17,7 @@ Para ver o crud em sua máquina, tenha um servidor web instalado, e o pgadmin ou
 Descompacte o arquivo dentro do seu diretorio raíz, e acesse a url primeiro para executar as 
 migrations em sequencia, 001,002,003,004 e após isso o crud funcionará.
 
-Lembrando que é necessário configurar a por de conexão com o banco de dados;
+Lembrando que é necessário configurar a porta de conexão com o banco de dados;
+Ou 5433 ou 5432 depende da sua configuração no postgrees.
 
 
