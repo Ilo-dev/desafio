@@ -1,17 +1,21 @@
 <?php if(!isset($paciente)):?>
 <form name="form" class="row g-3" action="<?= base_url() ?>paciente/inserir_paciente" method="post">
-  <?php else :?>
+  <?php elseif(isset($paciente)) :?>
   <form name="form" class="row g-3" action="<?= base_url()?>paciente/update" method="post">
     <input type="hidden" name="paciente_id" value="<?= isset($paciente) ? $paciente["paciente_id"] : "" ?>">
+     <?php else :?>
+  <form name="form" class="row g-3" action="<?= base_url()?>paciente/editar_paciente" method="post">
+    <input type="hidden" name="paciente_id" value="<?= isset($paciente) ? $paciente["paciente_id"] : "" ?>">
   <?php endif; ?>
-<div class="col-6">
-	 <input type="file" multiple id="addFotoGaleria">
-  	<div class="galeria">      
-    </div>
-</div>
+  <div class="col-6">
+  	 <input type="file" multiple id="foto" name="foto">
+    	<div id="foto_upload"> 
+
+      </div>
+  </div>
 	<div class="col-6">
 	  <label class="form-label"><h11>*</h11>Nome:</label>
-	  <input type="text" class="form-control input-md" id="nome_paciente" name="nome_paciente" value="<?= isset($paciente) ? $paciente["nome_paciente"] : "" ?>"required>
+	  <input type="text" class="form-control input-md" id="nome_paciente" name="nome_paciente" value="<?= isset($paciente) ? $paciente["nome_paciente"] : "" ?>" required>
 	</div>
 
 	<div class="col-md-4">
@@ -24,7 +28,7 @@
   </div>
   <div class="col-md-4">
     <label class="form-label"><h11>*</h11>CNS:</label>
-    <input type="text" class="form-control" name="cns"  value="<?= isset($paciente) ? $paciente["cns"] : "" ?>"required>
+    <input class="form-control" id="cns" name="cns" required="required" pattern="[0-9]+$" maxlength="15" size="15" placeholder="CNS" onblur="TestaCNS(this.value)"  value="<?= isset($paciente) ? $paciente["cns"] : "" ?>">
   </div>
 	<div class="mb-3">
 	  <label class="form-label"><h11>*</h11>Mãe:</label>
@@ -59,6 +63,6 @@
      <input class="form-control" name="ibge" type="text" id="ibge" size="30" value="<?= isset($endereco['ibge']) ? $endereco["ibge"] : "" ?>" required>
   </div>
   <div class="col-12">
-    <button type="submit" onclick="return validar()" class="btn btn-primary">Cadastrar</button>
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
   </div>
 </form>

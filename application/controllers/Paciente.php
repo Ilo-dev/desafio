@@ -28,8 +28,6 @@ class Paciente extends CI_Controller {
 
 	public function inserir_paciente()
 	{
-		$this->load->library('form_validation');
-	    $this->form_validation->set_rules('nome_paciente', 'Nome Paciente','required|min_length[5]|max_length[12]');
 		$this->load->model('paciente_model');
 	    $this->load->model('endereco_model');
 		$this->load->helper('array');
@@ -38,10 +36,24 @@ class Paciente extends CI_Controller {
         $this->endereco_model->inserir_endereco($endereco);
 
 		$paciente = elements(array('nome_paciente', 'mae_paciente', 'cpf', 'cns', 'data_nascimento'), $this->input->post());
-        $this->paciente_model->inserir_paciente($paciente);  
+     	$insercao =  $this->paciente_model->inserir_paciente($paciente);
+	    
+	    redirect("paciente");
+		}
 
-        redirect("paciente"); 
+	public function exibir_paciente($paciente_id)
+		{
+		$this->load->model('paciente_model');
+	    $this->load->model('endereco_model');
+		$this->load->helper('array');
 
+		$data['paciente'] = $this->paciente_model->exibir_paciente($paciente_id);
+	 	$data['endereco'] = $this->endereco_model->exibir_endereco($paciente_id);
+	 	$data['title'] = "Exibindo - Paciente";
+		$this->load->view('template/conteudo/header_conteudo/header_conteudo');
+	    $this->load->view('template/conteudo/menu');
+		$this->load->view('template/conteudo/form_paciente', $data);
+		$this->load->view('template/footer/footer');
 
 		}
 
