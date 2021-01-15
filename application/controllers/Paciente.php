@@ -3,6 +3,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Paciente extends CI_Controller {
 
+	function __construct() {
+
+        parent::__construct();
+        $teste = $this->session->userdata('logado');
+        if($teste == false)
+        {
+        	redirect(base_url());
+        }
+
+       
+    }
+
 	public function index()
 	{
 		$this->load->model('paciente_model');
@@ -40,22 +52,6 @@ class Paciente extends CI_Controller {
 	    redirect("paciente");
 		}
 
-	public function buscar_paciente($paciente_id)
-		{
-		$data['paciente'] = $this->db->get('paciente')->result();
-		$busca = $this->input->post('busca');
-		$data2['busca'] = $busca;
-
-		$this->db->like('nome', $busca);
-		$this->db->or_like('cpf',$busca);
-		$data2['pacientes'] = $this->db->get('paciente')->result();
-	 	$data['title'] = "Exibindo - Paciente";
-		$this->load->view('template/conteudo/header_conteudo/header_conteudo');
-	    $this->load->view('template/conteudo/menu');
-		$this->load->view('template/conteudo/form_paciente', $data);
-		$this->load->view('template/footer/footer');
-
-		}
 
 	public function editar_paciente($paciente_id)
 		{
@@ -98,23 +94,5 @@ class Paciente extends CI_Controller {
 		redirect("paciente");
 	}
 
-	public function login(){		
-		$usuario = $this->input->post('usuario');
-		$senha = $this->input->post('senha');
-		$this->db->where('login',$usuario);
-		$this->db->where('senha',$senha);
-		$usuario = $this->db->get('usuario')->result();		
-		if(count($usuario)===1){
-			$dados = array(
-               'login'  => $usuario[0]->usuario,
-               'logado' => TRUE
-            );
-			$this->session->set_userdata($dados);
-			redirect("paciente");
-		}
-		else{
-			redirect(base_url());
-		}
-	}
 }
 

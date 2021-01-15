@@ -1,38 +1,43 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 
 class Login extends CI_Controller {
 
-	public function index()
-	{
-		$this->load->model('usuario_model');
-		$data["usuarios"] = $this->usuario_model->index();
+    function __construct() {
+        parent::__construct();
+    }
 
-		$data["title"] = "Cadastro - Pacientes";
-		$this->load->view('template/header/header', $data);
+    public function acesso() {
 
-		$this->load->view('template/conteudo/form_login');
-		$this->load->view('template/footer/footer');
-	}
+    	echo 'Teste';
 
-	public function acesso()
-	{
+        // VALIDATION RULES
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('usuario', 'Usuario', 'required');
+        $this->form_validation->set_rules('senha', 'Senha', 'required');
+        $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
 
-		$usuario = $this->input->post('login');
-		$senha   = $this->input->post('senha');
 
-		$this->db->where('login', $usuario);
-		$this->db->where('senha', $senha);
+        // MODELO MEMBERSHIP
+        $this->load->model('usuario_model', 'usuario');
+        $query = $this->usuario->validacao();
 
-		$usuario = $this->db->get('usuario')->result();
-		if(count($usuario) === 1)
-		{
-			$dados= array('usuario' => $usuario[0]->usuario ,'logado' => TRUE );
-			$this->session->set_userdata($dados);
-			redirect("paciente");
-		}else
-		{
-			redirect("login");
-		}
-	}
+        if ($this->form_validation->run() == FALSE) {
+
+            $this->load->view('template/conteudo/form_login');
+        } else {
+
+            if ($query) { // VERIFICA LOGIN E SENHA
+                $data = array(
+                    'login' => $this->input->post('usuario'),
+                    'logged' => true
+                );
+                $this->session->set_userdata($data);
+                redirect('desafio/paciente');
+            } else {
+                redirect($this->index());
+            }
+        }
+    }
 }
